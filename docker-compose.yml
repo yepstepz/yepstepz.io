@@ -1,0 +1,63 @@
+version: '3'
+
+services:
+  wordpress:
+    image: wordpress
+    restart: always
+    depends_on:
+      - wordpress_db
+    env_file: .env
+    volumes:
+      - ./wordpress:/var/www/html
+    networks:
+      - web
+      - default
+    environment:
+      WORDPRESS_DB_PASSWORD: $MYSQL_ROOT_PASSWORD
+    links:
+      - wordpress_db:mysql
+    labels:
+      - traefik.enable=true
+      - traefik.frontend.rule=Host:api.yepstepz.io
+      - traefik.docker.network=web
+      - traefik.port=80
+  wordpress_db:
+    image: mariadb
+    restart: always
+    networks:
+      - web
+      - default
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+
+  whoami:
+    image: containous/whoami # A container that exposes an API to show its IP address
+    networks:
+      - web
+      - default
+    container_name: whoami
+    expose:
+      - "3000"
+    labels:
+      - traefik.backend=blog
+      - traefik.frontend.rule=Host:blog.yepstepz.io
+      - traefik.docker.network=web
+      - traefik.port=80
+      - traefik.enable=true
+  nginx: 
+    image: nginx:latest
+    container_name: nginx
+    networks:
+      - web
+    expose:
+      - "3000"
+    volumes:
+      - ./site:/usr/share/nginx/html
+    labels:
+      - traefik.enable=true
+      - traefik.frontend.rule=Host:yepstepz.io
+      - traefik.docker.network=web
+      - traefik.port=80
+networks:
+   web:
+      external: true
