@@ -58,6 +58,20 @@ services:
       - traefik.frontend.rule=Host:yepstepz.io
       - traefik.docker.network=web
       - traefik.port=80
+  conf:
+    image: nginx:latest
+    container_name: conf
+    networks:
+      - web
+    expose:
+      - "3000"
+    volumes:
+      - ./conf:/usr/share/nginx/html
+    labels:
+      - traefik.enable=true
+      - traefik.frontend.rule=Host:conf.yepstepz.io
+      - traefik.docker.network=web
+      - traefik.port=80
 networks:
    web:
       external: true
