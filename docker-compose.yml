@@ -30,12 +30,14 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
 
-  whoami:
-    image: containous/whoami # A container that exposes an API to show its IP address
+  blog:
+    image: nginx:latest
     networks:
       - web
       - default
-    container_name: whoami
+    container_name: blog
+    volumes:
+      - ./blog/public:/usr/share/nginx/html
     expose:
       - "3000"
     labels:
@@ -44,7 +46,7 @@ services:
       - traefik.docker.network=web
       - traefik.port=80
       - traefik.enable=true
-  nginx: 
+  nginx:
     image: nginx:latest
     container_name: nginx
     networks:
