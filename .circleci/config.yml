@@ -3,21 +3,21 @@ orbs:
   node: circleci/node@1.1.6
 jobs:
   build-and-test:
+    working_directory: /blog
     executor:
       name: node/default
     steps:
       - checkout
       - node/with-cache:
           steps:
-            - run: cd blog && npm install
-            - run: cd blog && npm run build
-            - run:
-                command: |
-                  mkdir -p /tmp/core_dumps
-                  cp core.* /tmp/core_dumps
-                when: on_fail
-            - store_artifacts:
-                path: /tmp/core_dumps
+            - run: npm install
+            - run: npm run build
+      - run:
+          name: Creating Dummy Artifacts
+          command: |
+            echo "my artifact file" > /blog/artifact-1;
+            mkdir /blog/artifacts;
+            echo "my artifact files in a dir" > /blog/artifacts/artifact-2;
 workflows:
     build-and-test:
       jobs:
