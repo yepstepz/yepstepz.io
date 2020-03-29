@@ -14,8 +14,6 @@ jobs:
       - run:
           name: Creating Dummy Artifacts
           command: |
-            mkdir /blog/artifacts-1;
-            echo "my artifact file" > /blog/artifact-1;
             mkdir /blog/artifacts;
             echo "my artifact files in a dir" > /blog/artifacts/artifact-2;
 workflows:
