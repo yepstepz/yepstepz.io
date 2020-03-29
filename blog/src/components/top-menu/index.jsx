@@ -13,7 +13,6 @@ const TopMenu = (data) => (
                   items {
                     title
                     url
-                    slug
                   }
                 }
             }
@@ -27,7 +26,7 @@ const TopMenu = (data) => (
                                     items.map(({title, url, slug}) => (
                                         <Item>
                                             <Link
-                                                to={slug || url}
+                                                to={url}
                                             >
                                                 {title}
                                             </Link>
