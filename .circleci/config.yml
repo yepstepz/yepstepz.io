@@ -3,15 +3,14 @@ orbs:
   node: circleci/node@1.1.6
 jobs:
   build-and-test:
-    working_directory: /blog
     executor:
       name: node/default
     steps:
       - checkout
       - node/with-cache:
           steps:
-            - run: npm install
-            - run: npm run build
+            - run: cd blog && npm install
+            - run: cd blog && npm run build
       - run:
           name: Creating Dummy Artifacts
           command: |
