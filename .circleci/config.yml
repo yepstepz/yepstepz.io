@@ -49,7 +49,7 @@ jobs:
           command: ssh-keyscan -H $SITE_SSH_HOST >> ~/.ssh/known_hosts
       - run:
           name: remove existing files
-          command: ssh "$SITE_SSH_USER@$SITE_SSH_HOST" "rm -rf /var/www/blog/*"
+          command: ssh "$SITE_SSH_USER@$SITE_SSH_HOST" "rm -rf /var/www/blog/public/*"
       - run:
           name: scp files
           command: scp -r public "$SITE_SSH_USER@$SITE_SSH_HOST:/var/www/blog/"
