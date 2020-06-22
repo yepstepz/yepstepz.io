@@ -58,3 +58,8 @@ body {
 pre {
     overflow: auto;
 }
+
+.video__iframe {
+    max-width: 960px;
+    height: 315px;
+}
