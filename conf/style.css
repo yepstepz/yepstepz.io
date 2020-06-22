@@ -1,0 +1,56 @@
+body {
+    font-family: "Playfair Display", serif;
+    font-size: 24px;
+}
+
+.wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 10px 20px;
+}
+
+.headline {
+    font-family: "Open Sans", sans-serif;
+    font-size: 56px;
+    font-weight: bold;
+    line-height: 1.29;
+    letter-spacing: 0.18px;
+    color: #2d2d2d;
+}
+
+.headline--second {
+    font-family: "Open Sans", sans-serif;
+    font-size: 48px;
+    letter-spacing: -0.87px;
+    color: #000000;
+}
+
+.headline--3 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    color: #2d2d2d;
+}
+
+.headline--4 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    font-style: italic;
+    color: #616161;
+}
+
+.content,
+.item {
+    line-height: 1.67;
+    letter-spacing: 0.7px;
+    color: #2d2d2d;
+}
+
+.link {
+    color: #0984e3;
+}
+
+pre {
+    overflow: auto;
+}
