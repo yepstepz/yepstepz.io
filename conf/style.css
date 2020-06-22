@@ -51,6 +51,10 @@ body {
     color: #0984e3;
 }
 
+.link--history {
+    font-size: 18px;
+}
+
 pre {
     overflow: auto;
 }
