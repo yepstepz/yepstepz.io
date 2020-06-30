@@ -19,7 +19,6 @@ services:
     labels:
       - traefik.enable=true
       - traefik.frontend.rule=Host:api.yepstepz.io
-      - traefik.docker.network=web
       - traefik.port=80
   wordpress_db:
     image: mariadb
@@ -38,12 +37,8 @@ services:
     container_name: blog
     volumes:
       - ./blog/public:/usr/share/nginx/html
-    expose:
-      - "3000"
     labels:
-      - traefik.backend=blog
       - traefik.frontend.rule=Host:blog.yepstepz.io
-      - traefik.docker.network=web
       - traefik.port=80
       - traefik.enable=true
   nginx:
@@ -51,29 +46,23 @@ services:
     container_name: nginx
     networks:
       - web
-    expose:
-      - "3000"
     volumes:
       - ./site:/usr/share/nginx/html
     labels:
       - traefik.enable=true
       - traefik.frontend.rule=Host:yepstepz.io
-      - traefik.docker.network=web
       - traefik.port=80
   conf:
     image: nginx:latest
     container_name: conf
     networks:
       - web
-    expose:
-      - "3000"
     volumes:
       - ./conf:/usr/share/nginx/html
     labels:
       - traefik.enable=true
       - traefik.frontend.rule=Host:conf.yepstepz.io
-      - traefik.docker.network=web
       - traefik.port=80
 networks:
-   web:
-      external: true
+  web:
+    external: true
